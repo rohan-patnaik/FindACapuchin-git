@@ -1,6 +1,6 @@
 const classes = {
-  0: "Food",
-  1: "Not Food",
+  0: "Sound of a capuchin!",
+  1: "Not a Capuchin",
 };
 
 // Check to see if TF.js is available
@@ -15,14 +15,14 @@ let model; // This is in global scope
 const loadModel = async () => {
   try {
     const tfliteModel = await tflite.loadTFLiteModel(
-      "models/2022-03-18_food_not_food_model_efficientnet_lite0_v1.tflite"
+      "/compressed_model_ver4.tflite"
     );
     model = tfliteModel; // assigning it to the global scope model as tfliteModel can only be used within this scope
     // console.log(tfliteModel);
 
     //  Check if model loaded
     if (tfliteModel) {
-      model_status.innerText = "Model loaded";
+      model_status.innerText = "Deep Audio Model loaded";
     }
   } catch (error) {
     console.log(error);
