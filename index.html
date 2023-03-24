@@ -63,6 +63,7 @@
   </style>
 </head>
 
+
 <body>
   <div id="container" style="margin-top:400px">
     <h1>Is this an audio file? Identify !!!!</h1>
@@ -73,8 +74,9 @@
     <p id="model_status">Awaiting TF.js model/ TFLite model loading</p>
 
     <p><label for="file-input">Upload Audio</label></p>
-    <p><input type="file" accept="audio/*" name="audio" id="file-input"/></p>
+    <input type="file" accept="audio/*" name="audio" id="file-input" onchange="loadAudio(event)"/>
     <p><audio id="audio" controls></audio></p>
+    <p>The file you uploaded is : <span id="uploaded-file"></span></p>
 
     <p>Predicted class :</p>
     <p id="predicted_class"></p>
@@ -83,7 +85,18 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite@0.0.1-alpha.7/dist/tf-tflite.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+      // Add your JavaScript here, including the loadAudio function
+      function loadAudio(event) {
+        const audioElement = document.getElementById('audio');
+        audioElement.src = URL.createObjectURL(event.target.files[0]);
+        audioElement.load();
+
+        // Update the text field with the uploaded file name
+        const uploadedFileElement = document.getElementById('uploaded-file');
+        uploadedFileElement.textContent = event.target.files[0].name;
+      }
+    </script>
   </div>
 </body>
 
